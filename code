@@ -1,10 +1,10 @@
 <?php
 	//////////////////////////////////////////
-	//								                  		//
-	//		Program created by Sam Bhatt	    //
-	//										                  //
-	//		This program will find the	    	//
-	//		latest news headlines			        //
+	//		        		//
+	//	Program created by Sam Bhatt	//
+	//		                        //
+	//	This program will find the	//
+	//	latest news headlines	        //
 	//////////////////////////////////////////
 	
 	include('simple_html_dom.php');
@@ -45,14 +45,5 @@
 		echo "<b>".$timestamp[$i].", ".$author[$i]." posted: </b>".$headlines[$i];
 		echo "<br><hr>";
 	}
-
-	/*$out = "";
-	for($i=0;$i<$limit;$i++)
-	{
-		$out = str_replace("\\", "", $out);
-		$out = $out.'"'.$timestamp[$i].", ".$author[$i]." posted. ".$headlines[$i].'"';
-		if($i != $limit-1){$out = $out.', ';}
-	}
-	$JSON = "[".$out."]";
-	echo $JSON;*/
+	
 ?>
