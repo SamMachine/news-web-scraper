@@ -1,0 +1,58 @@
+<?php
+	//////////////////////////////////////////
+	//								                  		//
+	//		Program created by Sam Bhatt	    //
+	//										                  //
+	//		This program will find the	    	//
+	//		latest news headlines			        //
+	//////////////////////////////////////////
+	
+	include('simple_html_dom.php');
+
+	$markup = file_get_contents('https://news.google.com');
+	$domResults = new simple_html_dom();
+	$domResults->load($markup);
+	$link = ' ';
+	$headlines = array();
+	$timestamp = array();
+	$author = array();
+	
+	$limit = 5;							//limit number of news headlines shown
+	
+	foreach($domResults->find('a[class="DY5T1d RZIKme"]') as $link)
+	{
+		$link ->plaintext;
+		$link = strip_tags($link);
+		array_push($headlines, $link);
+	}
+	foreach($domResults->find('time[class="WW6dff uQIVzc Sksgp"]') as $link)
+	{
+		$link ->plaintext;
+		$link = strip_tags($link);
+		array_push($timestamp, $link);
+	}
+	foreach($domResults->find('a[class="wEwyrc AVN2gc uQIVzc Sksgp"]') as $link)
+	{
+		$link ->plaintext;
+		$link = strip_tags($link);
+		array_push($author, $link);
+	}
+	echo "Top ".$limit." latest news headlines!<br>";
+	echo "<hr>";
+	
+	for($i=0;$i<$limit;$i++)
+	{
+		echo "<b>".$timestamp[$i].", ".$author[$i]." posted: </b>".$headlines[$i];
+		echo "<br><hr>";
+	}
+
+	/*$out = "";
+	for($i=0;$i<$limit;$i++)
+	{
+		$out = str_replace("\\", "", $out);
+		$out = $out.'"'.$timestamp[$i].", ".$author[$i]." posted. ".$headlines[$i].'"';
+		if($i != $limit-1){$out = $out.', ';}
+	}
+	$JSON = "[".$out."]";
+	echo $JSON;*/
+?>
