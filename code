@@ -19,31 +19,20 @@
 	
 	$limit = 5;							//limit number of news headlines shown
 	
-	foreach($domResults->find('a[class="DY5T1d RZIKme"]') as $link)
+	if($limit > 6){$limit = 6;}
+	foreach($domResults->find('h3[class="ipQwMb ekueJc RD0gLb"]') as $link)
 	{
 		$link ->plaintext;
 		$link = strip_tags($link);
 		array_push($headlines, $link);
 	}
-	foreach($domResults->find('time[class="WW6dff uQIVzc Sksgp"]') as $link)
-	{
-		$link ->plaintext;
-		$link = strip_tags($link);
-		array_push($timestamp, $link);
-	}
-	foreach($domResults->find('a[class="wEwyrc AVN2gc uQIVzc Sksgp"]') as $link)
-	{
-		$link ->plaintext;
-		$link = strip_tags($link);
-		array_push($author, $link);
-	}
+	
 	echo "Top ".$limit." latest news headlines!<br>";
 	echo "<hr>";
 	
 	for($i=0;$i<$limit;$i++)
 	{
-		echo "<b>".$timestamp[$i].", ".$author[$i]." posted: </b>".$headlines[$i];
+		echo $headlines[$i];
 		echo "<br><hr>";
 	}
-	
 ?>
